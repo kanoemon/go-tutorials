@@ -2,11 +2,18 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/kanoemon/go-tutorials/greetings"
 )
 
 func main() {
-	message := greetings.Hello("kanoe")
+	log.SetPrefix("greetings: ")
+	log.SetFlags(0)
+
+	message, err := greetings.Hello("")
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Println(message)
 }
