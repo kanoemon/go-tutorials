@@ -1,5 +1,6 @@
 package main
 
+// album data
 type album struct {
 	ID     string  `json: "id"`
 	Title  string  `json:"title"`

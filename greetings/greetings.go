@@ -7,11 +7,14 @@ import (
 	"time"
 )
 
+// Helloはランダムに挨拶のフォーマットを設定して返す。
 func Hello(name string) (string, error) {
 	if name == "" {
 		return "", errors.New("empty name")
 	}
 	message := fmt.Sprintf(randomFormat(), name)
+
+	// TODO(name): test
 	return message, nil
 }
 
