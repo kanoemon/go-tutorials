@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+type Number interface {
+	int64 | float64
+}
+
 func main() {
 	ints := map[string]int64{
 		"first":  34,
@@ -24,6 +28,10 @@ func main() {
 	fmt.Printf("Generic Sums: %v and %v\n",
 		SumIntsOrFloats(ints),
 		SumIntsOrFloats(floats))
+
+	fmt.Printf("Generic Sums with Constraint: %v and %v\n",
+		SumNumbers(ints),
+		SumNumbers(floats))
 }
 
 // SumIntsはintの合計値を返す。
@@ -46,6 +54,15 @@ func SumFloats(m map[string]float64) float64 {
 
 // SumIntsOrFloatsはintかfloatの合計値を返す。
 func SumIntsOrFloats[K comparable, V int64 | float64](m map[K]V) V {
+	var s V
+	for _, v := range m {
+		s += v
+	}
+	return s
+}
+
+// SumNumbersはNumberで定義されている型の合計値を返す
+func SumNumbers[K comparable, V Number](m map[K]V) V {
 	var s V
 	for _, v := range m {
 		s += v
